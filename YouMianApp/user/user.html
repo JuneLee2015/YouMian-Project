@@ -1,0 +1,347 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>用户信息</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta content="black" name=”apple-mobile-web-app-status-bar-style” />
+    <meta name="format-detection" content="telephone=no">
+    <link href="../public/css/base.css" rel="stylesheet" type="text/css">
+    <link href="../public/css/pages.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="../public/js/appframework.js"></script>
+    <script type="text/javascript" src="../public/js/appframework.ui.js"></script>
+    <script type="text/javascript" src="../public/js/iscroll.js"></script>
+    <script type="text/javascript" src="../public/js/template.js"></script>
+</head>
+<body>
+    <div id="afui" class='af'>
+        <div id="splashscreen" class='ui-loader'>
+            <div class="spinnerInit">
+                <p id="spinnerInit"></p>
+            </div>
+        </div>
+        <div id="header"></div>
+        <div id="navbar"></div>
+        <div id="content" style="">
+            <!--个人中心页面 开始-->
+            <div class="panel" title="个人中心" data-tab="userCenter" js-scrolling="true" id="page_user"
+                 data-appbuilder-object="page" data-header="wechat" style="display: block;"
+                 data-footer="defaultFoot">
+                <div class="pad-v10">
+                    <ul class="shop-info-list bold pad-h10">
+                        <li>我的称呼：<span id="divCallName"></span></li>
+                        <li>我的电话：<span id="divMobile"></span></li>
+                    </ul>
+                    <p class="pad10 color-warn" style="font-size: 0.9em">
+                        您如果更换号码，只能看到新号码下的订单或代金券，旧订单或代金券无法查看
+                    </p>
+                    <div class="hr"></div>
+                    <ul>
+                        <li class="pad10">
+                            <a actionname="toMyReserveList" class="box">
+                                <div class="item-left"><img src="../public/img/demo4.jpg" /></div>
+                                <div class="box1 bold" style="line-height: 80px;font-size: 1.2em;">我的预订单</div>
+                            </a>
+                        </li>
+                        <li class="hr"></li>
+                        <li class="pad10">
+                            <a actionname="toMyTicketList" class="box">
+                                <div class="item-left"><img src="../public/img/demo2.jpg" /></div>
+                                <div class="box1 bold" style="line-height: 80px;font-size: 1.2em;">我的优惠券</div>
+                            </a>
+                        </li>
+                        <li class="hr"></li>
+                        <li class="pad10">
+                            <a actionname="toMyMovieList" class="box">
+                                <div class="item-left"><img src="../public/img/demo3.jpg" /></div>
+                                <div class="box1 bold" style="line-height: 80px;font-size: 1.2em;">我的电影票</div>
+                            </a>
+                        </li>
+                        <li class="hr"></li>
+                    </ul>
+                </div>
+            </div>
+            <!--我的预订页面 开始-->
+            <div class="panel" title="预订" data-tab="userCenter" js-scrolling="false" id="page_reserve_list"
+                 data-appbuilder-object="page" data-header="wechat" data-footer="defaultFoot" style="overflow: hidden">
+                <div class="tab">
+                    <div class="box tab-menu2" id="divRestOrder">
+                        <a class="box1 box1-2 selected tab-menu2-item" actionname="selectTab" obj="reserve" type="N">未到店订单</a>
+                        <a class="box1 box1-2 tab-menu2-item" actionname="selectTab" obj="reserve" type="Y">已到店订单</a>
+                    </div>
+                </div>
+                <div class="wrapper js-i-scroll" id="wrapper_notget" style="top:53px;overflow: hidden;">
+                    <div class="scroller">
+                        <ul class="order-list" id="div_order_notget">
+                            <!--<li class="pad10">
+                                <div class="box h30">
+                                    <div class="box1">探鱼宝安海雅缤纷店</div>
+                                    <div>餐位：201</div>
+                                </div>
+                                <div class="box h30">
+                                    <div class="box1">2014年12月14日中午</div>
+                                    <div><span class="color-theme">等待商家确认</span></div>
+                                </div>
+                                <div class="box pad-t5">
+                                    <a class="box1 pad-h10percent btn-buy" actionname="cancelReserve" data-id="1">
+                                        <span class="h30">取消</span>
+                                    </a>
+                                    <a class="box1 pad-h10percent btn-buy" actionname="editReserve" data-id="1">
+                                        <span class="h30">修改</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="hr"></li>
+                            <li class="pad10">
+                                <div class="box h30">
+                                    <div class="box1">小肥羊宝安海雅缤纷店</div>
+                                    <div>餐位：101</div>
+                                </div>
+                                <div class="box h30">
+                                    <div class="box1">2014年12月15日中午</div>
+                                    <div><span class="color-theme">已预订</span></div>
+                                </div>
+                                <div class="box pad-t5">
+                                    <a class="box1 pad-h10percent btn-buy" actionname="cancelReserve" data-id="2">
+                                        <span class="h30">取消预订</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="hr"></li>-->
+                            
+                        </ul>
+                        <div class="view-more"><a actionname="nextPage_restorder">继续查看更多</a></div>
+                    </div>
+                </div>
+                <div class="wrapper js-i-scroll" id="wrapper_hasget" style="top:53px;overflow: hidden;">
+                    <div class="scroller">
+                        <ul class="order-list" id="div_order_hasget">
+                            <!--<li class="pad10">
+                                <div class="box h30">
+                                    <div class="box1">探鱼宝安海雅缤纷店</div>
+                                    <div>餐位：201</div>
+                                </div>
+                                <div class="box h30">
+                                    <div class="box1">2014年12月14日中午</div>
+                                    <div><span class="color-theme">等待商家确认</span></div>
+                                </div>
+                                <div class="box pad-t5">
+                                    <a class="box1 pad-h10percent btn-buy" actionname="cancelReserve" data-id="1">
+                                        <span class="h30">取消</span>
+                                    </a>
+                                    <a class="box1 pad-h10percent btn-buy" actionname="editReserve" data-id="1">
+                                        <span class="h30">修改</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="hr"></li>
+                            <li class="pad10">
+                                <div class="box h30">
+                                    <div class="box1">小肥羊宝安海雅缤纷店</div>
+                                    <div>餐位：101</div>
+                                </div>
+                                <div class="box h30">
+                                    <div class="box1">2014年12月15日中午</div>
+                                    <div><span class="color-theme">已预订</span></div>
+                                </div>
+                                <div class="box pad-t5">
+                                    <a class="box1 pad-h10percent btn-buy" actionname="cancelReserve" data-id="2">
+                                        <span class="h30">取消预订</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="hr"></li>-->
+                        </ul>
+                        <div class="view-more"><a actionname="nextPage_restorder">继续查看更多</a></div>
+                    </div>
+                </div>
+            </div>
+            <!--我的电影票页面 开始-->
+            <div class="panel" title="电影票" data-tab="userCenter" js-scrolling="false" id="page_movie_list"
+                 data-appbuilder-object="page" data-header="wechat" data-footer="defaultFoot" style="overflow: hidden;">
+                <div class="tab">
+                    <div class="box tab-menu2" id="divMovieOrder">
+                        <a class="box1 box1-2 selected tab-menu2-item" actionname="selectTab_movie" obj="movie" type="N">未使用</a>
+                        <a class="box1 box1-2 tab-menu2-item" actionname="selectTab_movie" obj="movie" type="Y">已使用</a>
+                    </div>
+                </div>
+                <div class="wrapper js-i-scroll" id="wrapper_movie_not" style="top:53px;overflow: hidden;">
+                    <div class="scroller">
+                        <ul class="order-list" id="div_movie_notget">
+                            <!--<li class="pad10">
+                                <a actionname="toDetailMovie">
+                                    <div class="shop-info-title">
+                                        <span>天亿电影票</span><span class="color-theme">(2)</span>
+                                    </div>
+                                    <div class="shop-info-list box">
+                                        <div>优惠券：</div>
+                                        <div class="box1">
+                                            <div>1 2354 2324 2312</div>
+                                            <div>1 2354 2324 2312</div>
+                                        </div>
+                                    </div>
+                                    <div class="order-list-time">
+                                        <span class="info-small">有效期：2014-10-11至2014-12-11</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="hr"></li>-->
+                        </ul>
+                        <div class="view-more"><a actionname="nextPage_movieorder">继续查看更多</a></div>
+                    </div>
+                </div>
+                <div class="wrapper js-i-scroll" id="wrapper_movie_has" style="top:53px;overflow: hidden;">
+                    <div class="scroller">
+                        <ul class="order-list" id="div_movie_hasget">
+                            <!--<li class="pad10">
+                                <a actionname="toDetailMovie">
+                                    <div class="shop-info-title">
+                                        <span>天亿电影票</span><span class="color-theme">(2)</span>
+                                    </div>
+                                    <div class="shop-info-list box">
+                                        <div>优惠券：</div>
+                                        <div class="box1">
+                                            <div>1 2354 2324 2312</div>
+                                            <div>1 2354 2324 2312</div>
+                                        </div>
+                                    </div>
+                                    <div class="order-list-time">
+                                        <span class="info-small">有效期：2014-10-11至2014-12-11</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="hr"></li>-->
+                        </ul>
+                        <div class="view-more"><a actionname="nextPage_movieorder">继续查看更多</a></div>
+                    </div>
+                </div>
+            </div>
+            <!--我的优惠券页面 开始-->
+            <div class="panel" title="优惠券" data-tab="userCenter" js-scrolling="false" id="page_ticket_list"
+                 data-appbuilder-object="page" data-header="wechat" data-footer="defaultFoot" style="overflow: hidden">
+                <div class="tab">
+                    <div class="box tab-menu2" id="divTicketOrder">
+                        <a class="box1 box1-2 selected tab-menu2-item" actionname="selectTab_ticket" obj="ticket" type="N">未使用</a>
+                        <a class="box1 box1-2 tab-menu2-item" actionname="selectTab_ticket" obj="ticket" type="Y">已使用</a>
+                    </div>
+                </div>
+                <div class="wrapper js-i-scroll" id="wrapper_ticket_not" style="top:53px;overflow: hidden;">
+                    <div class="scroller">
+                        <ul class="order-list" id="div_ticket_notget">
+                            <!--<li class="pad10">
+                                    <a actionname="toDetailTicket">
+                                        <div class="shop-info-title">
+                                            <span>小肥羊50元代金券</span><span class="color-theme">(2)</span>
+                                        </div>
+                                        <div class="shop-info-list box">
+                                            <div>优惠券：</div>
+                                            <div class="box1">
+                                                <div>1 2354 2324 2312</div>
+                                                <div>1 2354 2324 2312</div>
+                                            </div>
+                                        </div>
+                                        <div class="order-list-time">
+                                            <span class="info-small">有效期：2014-10-11至2014-12-11</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="hr"></li>-->
+                        </ul>
+                        <div class="view-more"><a actionname="nextPage_ticketorder">继续查看更多</a></div>
+                    </div>
+                </div>
+                <div class="wrapper js-i-scroll" id="wrapper_ticket_has" style="top:53px;overflow: hidden;">
+                    <div class="scroller">
+                        <ul class="order-list" id="div_ticket_hasget">
+                            <!--<li class="pad10">
+                    <a actionname="toDetailTicket">
+                        <div class="shop-info-title">
+                            <span>小肥羊50元代金券</span><span class="color-theme">(2)</span>
+                        </div>
+                        <div class="shop-info-list box">
+                            <div>优惠券：</div>
+                            <div class="box1">
+                                <div>1 2354 2324 2312</div>
+                                <div>1 2354 2324 2312</div>
+                            </div>
+                        </div>
+                        <div class="order-list-time">
+                            <span class="info-small">有效期：2014-10-11至2014-12-11</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="hr"></li>-->
+                        </ul>
+                        <div class="view-more"><a actionname="nextPage_ticketorder">继续查看更多</a></div>
+                    </div>
+                </div>
+            </div>
+            <!--密码页面 开始-->
+            <div class="panel" title="密码" data-tab="userCenter" js-scrolling="true" id="page_code_detail"
+                 data-appbuilder-object="page" data-header="wechat" data-footer="defaultFoot">
+                <div class="pad10 box">
+                    <div class="item-left">
+                        <img id="teamImage" src="">
+                    </div>
+                    <div class="item-content box1">
+                        <div class="item-title">
+                            <h3 class="ellipses" id="teamTitle"></h3>
+                            <div class="info-small" id="teamSubTitle"></div>
+                        </div>
+                        <div class="cash" style="font-size: 1.5em;margin-top:10px;" id="teamPrice"></div>
+                    </div>
+                </div>
+                <div class="hr"></div>
+                <ul class="pad10 code-list" id="divTeamsOfThisUser">
+                    
+                    <!--<li class="box border-bottom1">
+                        <div class="box1"><span>券码:</span><span>0026 2222 5555 55</span></div>
+                        <div><a class="btn-refund" actionname="refund"><span>退款</span></a><span>未使用</span></div>
+                    </li>
+                    <li class="box">
+                        <div class="box1"><span>券码:</span><span>0026 2222 5555 55</span></div>
+                        <div>已使用</div>
+                    </li>-->
+                </ul>
+                <div class="hr"></div>
+                <ul class="shop-info-list pad10" style="line-height: 2;">
+                    <li class="bold"><span>商家电话:</span><span id="partnerMobile"></span></li>
+                    <li><span>地址：</span><span id="partnerAddress"></span></li>
+                    <li class="color-minor2"><span>联系客服：</span><span id="parterPhone"></span></li>
+                </ul>
+                <div class="hr"></div>
+            </div>
+        </div>
+        <footer id="defaultFoot">
+            <a onclick="window.location.href='../reserve/reserve.html'" id="book" class="icon icon-file" actionname="toBook">餐位预定</a>
+            <a onclick="window.location.href='../ticket/TeamList.html'" id="ticket" class="icon icon-users" actionname="toTicket">优惠券</a>
+            <a href="#page_user" id="userCenter" class="icon icon-tags" actionname="toUserInfo">个人信息</a>
+        </footer>
+        <header id="wechat">
+            <a class="btn-left btn-back" onclick="$.ui.goBack()">返回</a>
+            <a class="btn-right">我的信息</a>
+        </header>
+    </div>
+    <script type="text/javascript">
+        $.ui.blockPageScroll();
+        $.ui.isAjaxApp = false;
+        $.os.supportsTouch = true;
+        $.ui.useOSThemes = false;
+        $.feat.nativeTouchScroll = false;
+        $.ui.autoLaunch = true;
+    </script>
+    <script type="application/javascript" src="../public/js/sea.js"></script>
+    <script type="application/javascript">
+        seajs.config({
+            charset: 'utf-8',
+            timeout: 20000,
+            debug: false
+        });
+        seajs.use('../user/user.js');
+    </script>
+</body>
+</html>

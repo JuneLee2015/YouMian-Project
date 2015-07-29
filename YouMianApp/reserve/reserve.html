@@ -1,0 +1,271 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>餐位预定</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta content="black" name=”apple-mobile-web-app-status-bar-style” />
+    <meta name="format-detection" content="telephone=no">
+    <link href="../public/css/base.css" rel="stylesheet" type="text/css">
+    <link href="../public/css/pages.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="../public/js/appframework.js"></script>
+    <script type="text/javascript" src="../public/js/appframework.ui.js"></script>
+    <script type="text/javascript" src="../public/js/iscroll.js"></script>
+    <script type="text/javascript" src="../public/js/template.js"></script>
+    <script type="text/javascript">
+        $.ui.blockPageScroll();
+        $.ui.isAjaxApp = false;
+        $.os.supportsTouch = true;
+        $.ui.useOSThemes = false;
+        $.feat.nativeTouchScroll = false;
+        $.ui.autoLaunch = true;
+
+        if (!$.os.ios && !$.os.android) {
+            var script = document.createElement("script");
+            script.src = "../public/js/af.desktopBrowsers.js";
+            var tag = $("head").append(script);
+        }
+    </script>
+</head>
+<body>
+    <div id="afui" class='af'>
+        <div id="splashscreen" class='ui-loader'>
+            <div class="spinnerInit">
+                <p id="spinnerInit"></p>
+            </div>
+        </div>
+        <div id="header"></div>
+        <div id="navbar">
+        </div>
+        <div id="content" style="">
+            <div class="panel" title="餐位预定列表" data-tab="book" js-scrolling="false" id="page_reserve_list"
+                 data-appbuilder-object="page" data-header="wechat" style="display: block;overflow: hidden"
+                 data-footer="defaultFoot">
+                <section class="search-deal">
+                    <!--<span class="floatL">饭店搜索</span>
+                    <a class="floatR btn-search" actionname="goSearch">搜 索</a>
+                    <div class="search-deal-input"><input id="txtTeamName" placeholder="" /></div>-->
+                    <div class="search-input">
+                        <div class="search-input-box">
+                            <input class="search-input-input" id="txtTeamName" placeholder="搜索饭店" />                            
+                            <a id="btnSearch" class="floatR btn-search" actionname="goSearch" ><span class="search-icon"></span></a>
+                        </div>
+                    </div>
+                </section>
+                <div class="list-nav ">
+                    <div class="cat fix">
+                        <a actionname="showMenu" id="areaVal" show="AreaList" class="nav-item box1-2">
+                            <span>全部区域</span>
+                            <i class="drop"></i>
+                        </a>
+                        <a actionname="showMenu" id="cuisineVal" show="CuisineList" class="nav-item box1-2">
+                            <span>全部菜系</span>
+                            <i class="drop"></i>
+                        </a>
+                    </div>
+                    <div class="top-selector js-i-scroll" iscroll-bounce="false" id="AreaList">
+                        <ul class="menu" id="divAreas">
+                            <!--<li class="menu-item on"><a actionname="selectArea">全部区域</a></li>
+                            <li class="menu-item"><a actionname="selectArea">福田区</a></li>-->
+                        </ul>
+                    </div>
+                    <div class="top-selector js-i-scroll" iscroll-bounce="false" id="CuisineList">
+                        <ul class="menu" id="divCaixi">
+                            <!--<li class="menu-item on"><a actionname="selectCuisine">全部川菜</a></li>
+                            <li class="menu-item"><a actionname="selectCuisine">川菜</a></li>-->
+                        </ul>
+                    </div>
+                    <div class="top-selector js-i-scroll" iscroll-bounce="false" id="orderList">
+                        <ul class="menu">
+                            <li class="menu-item on"><a actionname="selectOrder">销量</a></li>
+                            <li class="menu-item"><a actionname="selectOrder">折扣</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="wrapper_0" style="top:80px" class="wrapper js-i-scroll">
+                    <div id="scroller_0" class="scroller">
+                        <div id="mask"></div>
+                        <ul id="divListContent" class="search-list">
+                            <!--<li>
+                                <a actionname="toDetail" data-id="1" class="item box">
+                                    <div class="item-left">
+                                        <img src="../public/img/demo4.jpg" />
+                                    </div>
+                                    <div class="item-content box1">
+                                        <div class="item-title"><h3 class="ellipses">瑞吉酒店</h3></div>
+                                        <div class="item-info">
+                                            <span class="reserve-table floatR">预定</span>
+                                            <span class="item-info-span">人均：￥100</span>
+                                            <span class="item-info-span">地址：南山区</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>-->
+
+                        </ul>
+                        <div class="view-more" style="color:#ed5d1e;"><a actionname="nextPage" onclick="javascript:void(0)">点击加载更多...</a></div>
+                    </div>
+                </div>
+            </div>
+            <!--订餐列表页面 结束-->
+            <!--订餐详情页面 开始-->
+            <div class="panel" title="详情" js-scrolling="true" id="page_reserve_detail" data-tab="book"
+                 data-footer="defaultFoot"
+                 data-appbuilder-object="page" data-header="wechat" style="overflow: hidden">
+                <div class="detail">
+                    <h2 id="txtRestDetailTitle" class="detail-title"></h2>
+                    <div class="box detail-info">
+                        <div class="item-pic">
+                            <img id="imgRestDetailImage" src="" style="width: 150px;height:113px;">
+                        </div>
+                        <div class="box1 item-info2">
+                            <!--<div class=" shop-info info-small" style="padding: 0;margin: 0;">
+                                <a class="box1" style="padding-left: 40px;height: 30px;line-height: 35px">
+                                    优惠券
+                                </a>
+                            </div>-->
+                            <div class="info-small">营业时间：</div>
+                            <div id="txtTime" class="info-small"></div> 
+                            <div class="info-small">&nbsp;&nbsp;</div>                             
+                            <div>
+                                <a id="btnReserve" class="btn-buy" actionname="toReserveOne" data-id="">
+                                    <span class="floatR">我要预定</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hr"></div>
+                    <div class="shop-info">
+                        <ul class="shop-info-list">
+                            <li><span>电话：</span><span id="txtDetailPhone"></span></li>
+                            <li><span>地址：</span><span id="txtDetailAddress"></span></li>
+                        </ul>
+                    </div>
+                    <div class="hr"></div>
+                    <div class="shop-info">
+                        <p class="shop-info-list" id="txtDetailSpecial">
+                            <!--business customer details-->
+                        </p>
+                    </div>
+                    <div class="hr"></div>
+                    <div class=" shop-info">
+                        <a class="btn-buy" actionname="toReserveOne" data-id="" data-name="">
+                            <span class="h40">立即预定</span>
+                        </a>
+                    </div>
+                    <div class="hr"></div>
+                    <ul class="list-plain" id="divDetailsOfTeams">
+                        <!--                        
+                        <li class="list-plain-li arrows">
+                            <a class="ellipses" actionname="toDetailTicket" data-id="">小肥羊50元代金券</a>
+                        </li>-->
+                    </ul>
+                    <div class="hr"></div>
+                </div>
+                <!--订餐详情页面 结束-->
+                <!--预定页面-->
+                <div class="panel" title="预定" js-scrolling="true" id="page_reserve_buy" data-tab="book"
+                     data-footer="defaultFoot" data-appbuilder-object="page" data-header="wechat">
+                    <div class="detail">
+                        <h2 id="txtRestOrderTitle" class="detail-title"></h2>
+                        <ul class="buyinfo-list">
+                            <li>
+                                <a class="btn-calendar" id="btnCalendar" actionname="toCalendar"></a>
+                                <div id="calendarH">
+                                    <ul class="box"></ul>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="box tab-menu" id="divOrderMealSelected">
+                                    <a class="box1 box1-2 tab-menu-item selected" actionname="selectMeal"
+                                       type="lunch">午餐</a>
+                                    <a class="box1 box1-2 tab-menu-item" actionname="selectMeal" type="dinner">晚餐</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="box tab-menu" id="divOrderMealRoomSelected">
+                                    <a class="box1 box1-2 tab-menu-item selected" actionname="selectRoom"
+                                       type="room">只订包间</a>
+                                    <a class="box1 box1-2 tab-menu-item " actionname="selectRoom" type="roomFirst">包间优先</a>
+                                </div>
+                            </li>
+                            <li>
+                                <input id="txtOrderedNumber" class="ipt-info" placeholder="就餐人数（请输入整数）" type="text" />
+                            </li>
+                            <li>
+                                <input id="txtOrderedCustomerPhone" class="ipt-info" placeholder="手机号码" maxlength="11" type="text" />
+                            </li>
+                            <li class="box tab-menu">
+                                <div class="box1 box1-2">
+                                    <input id="txtOrderedAlias" class="ipt-info" placeholder="称呼" maxlength="10" type="text" />
+                                </div>
+                                <div class="box1 box1-2">
+                                    <div class="box tab-menu" id="divOrderedSex">
+                                        <a class="box1 box1-2 tab-menu-radio radio-selected" actionname="selectGender"
+                                           type="male">男</a>
+                                        <a class="box1 box1-2 tab-menu-radio" actionname="selectGender" type="female">女</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                            </li>
+                        </ul>
+                        <div class=" shop-info"><!---->
+                            <a id="btnLiJiOrder" class="btn-buy" actionname="toReserve" data-id="1"><span class="h40">立即预定</span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel" js-scrolling="true" id="page_calendar" data-tab="book"
+                     data-footer="defaultFoot" data-appbuilder-object="page" data-header="wechat">
+                    <div>
+                        <div class="calendar" id="calendar" style="border-bottom: 1px solid #cfcfcf;">
+                        </div>
+                    </div>
+                </div>
+                <div class="panel" js-scrolling="true" id="page_bind" data-tab="book"
+                     data-footer="defaultFoot" data-appbuilder-object="page" data-header="wechat">
+                    <div class="detail">
+                        <h2 class="detail-title">绑定手机号</h2>
+                        <div class="box pad-h10">
+                            <div style="width:200px;margin-right:10px;">
+                                <input id="txtYourCellPhone" class="ipt-info" placeholder="您的手机号码" maxlength="11" type="text" />
+                            </div>
+                            <a id="aGetBindCode" class="box1 " actionname="getBindCode">
+                                <span id="txtGetValidateCode" class="btn-theme">获取验证码</span>
+                            </a>
+                        </div>
+                        <div class="shop-info">
+                            <input id="txtValidateCode" class="ipt-info" placeholder="验证码" maxlength="8" style="width:100px;" type="text" />
+                        </div>
+                        <div class="shop-info">
+                            <a class="btn-buy" actionname="toSubmit" data-id="1"><span class="h40">确认绑定</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>   
+        <footer id="defaultFoot">
+            <a href="#page_reserve_list" id="book" class="icon icon-file" actionname="toBook">预定餐位</a>
+            <a onclick="window.location.href='../ticket/TeamList.html'" id="ticket" class="icon icon-users" actionname="toTicket">优惠券</a>
+            <a onclick="window.location.href='../user/user.html'" class="icon icon-tags" actionname="toUserInfo">个人信息</a>
+        </footer>
+        <header id="wechat">
+            <a class="btn-left btn-back" onclick="$.ui.goBack()">返回</a>
+            <a class="btn-right">我的信息</a>
+        </header>
+    </div>
+    <script type="application/javascript" src="../public/js/sea.js"></script>
+    <script type="application/javascript">
+        seajs.config({
+            charset: 'utf-8',
+            timeout: 20000,
+            debug: false
+        });
+        seajs.use('../reserve/reserve.js');
+    </script>
+</body>
+</html>

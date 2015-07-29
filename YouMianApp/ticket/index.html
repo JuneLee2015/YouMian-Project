@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<title>优惠券</title>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta http-equiv="Pragma" content="no-cache">
+<meta content="black" name=”apple-mobile-web-app-status-bar-style”/>
+<meta name="format-detection" content="telephone=no">
+<link href="../public/css/base.css" rel="stylesheet" type="text/css">
+<link href="page.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../public/js/appframework.js"></script>
+<script type="text/javascript" src="../public/js/appframework.ui.js"></script>
+<script type="text/javascript" src="../public/js/af.scroller.js"></script>
+<script type="text/javascript" src="../public/js/template.js"></script>
+</head>
+<body>
+
+<div id="afui" class='af'>
+    <div id="splashscreen" class='ui-loader'>
+        <div class="spinnerInit">
+            <p id="spinnerInit"></p>
+        </div>
+    </div>
+    <div id="header"></div>
+    <div id="navbar">
+    </div>
+
+    <div id="content" style="">
+        <div class="panel" title="优惠券列表" data-tab="ticket" js-scrolling="true" id="page_ticket_list"
+             data-appbuilder-object="page" data-header="wechat" style="display: block;overflow: hidden"
+             data-footer="defaultFoot">
+            <div id="mask"></div>
+            <section class="search-deal">
+                <span class="floatL">餐位预定中心</span>
+                <a class="floatR btn-search">搜索</a>
+
+                <div class="search-deal-input"><input placeholder="搜索优惠券"/></div>
+            </section>
+
+            <div class="list-nav ">
+                <div class="cat fix">
+                    <a actionname="showMenu" id="areaVal" show="AreaList" class="nav-item">
+                        <span>全部区域</span>
+                        <i class="drop"></i>
+                    </a>
+                    <a actionname="showMenu" id="cuisineVal" show="CuisineList" class="nav-item">
+                        <span>全部菜系</span>
+                        <i class="drop"></i>
+                    </a>
+                    <a actionname="showMenu" id="orderVal" show="orderList" class="nav-item">
+                        <span>默认排序</span>
+                        <i class="drop"></i>
+                    </a>
+                </div>
+                <section class="top-selector" id="AreaList">
+                    <ul class="menu">
+                        <li class="menu-item on"><a actionname="selectArea">全部区域</a></li>
+                        <li class="menu-item"><a actionname="selectArea">福田区</a></li>
+                        <li class="menu-item"><a actionname="selectArea">罗湖区</a></li>
+                        <li class="menu-item"><a actionname="selectArea">南山区</a></li>
+                        <li class="menu-item"><a actionname="selectArea">盐田区</a></li>
+                    </ul>
+                </section>
+                <section class="top-selector" id="CuisineList">
+                    <ul class="menu">
+                        <li class="menu-item on"><a actionname="selectCuisine">全部川菜</a></li>
+                        <li class="menu-item"><a actionname="selectCuisine">川菜</a></li>
+                        <li class="menu-item"><a actionname="selectCuisine">湘菜</a></li>
+                        <li class="menu-item"><a actionname="selectCuisine">粤菜</a></li>
+                        <li class="menu-item"><a actionname="selectCuisine">西餐</a></li>
+                        <li class="menu-item"><a actionname="selectCuisine">日本料理</a></li>
+                    </ul>
+                </section>
+                <section class="top-selector" id="orderList">
+                    <ul class="menu">
+                        <li class="menu-item on"><a actionname="selectOrder">销量</a></li>
+                        <li class="menu-item"><a actionname="selectOrder">折扣</a></li>
+                    </ul>
+                </section>
+            </div>
+            <div id="wrapper_0" class="wrapper">
+                <div id="scroller_0" class="scroller">
+                    <ul class="search-list">
+                        <li class="">
+                            <a actionname="toDetail" data-id="1" class="item box">
+                                <div class="item-left">
+                                    <img src="../public/img/demo3.jpg"/>
+                                </div>
+                                <div class="item-content box1">
+                                    <div class="item-title"><h3 class="ellipses">探鱼打折券</h3></div>
+                                    <div class="item-info"><span class="cash floatR">$100</span><span
+                                            class="item-info-span">原价999现价100</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a actionname="toDetail" data-id="2" class="item box">
+                                <div class="item-left">
+                                    <img src="../public/img/demo2.jpg"/>
+                                </div>
+                                <div class="item-content box1">
+                                    <div class="item-title"><h3 class="ellipses">小肥羊代金券</h3></div>
+                                    <div class="item-info"><span class="cash floatR">$50</span><span
+                                            class="item-info-span">原价99现价50</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a actionname="toDetail" data-id="3" class="item box">
+                                <div class="item-left">
+                                    <img src="../public/img/demo1.jpg"/>
+                                </div>
+                                <div class="item-content box1">
+                                    <div class="item-title"><h3 class="ellipses">外婆家代金券</h3></div>
+                                    <div class="item-info"><span class="cash floatR">$50</span><span
+                                            class="item-info-span">原价999现价50</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a actionname="toDetail" data-id="1" class="item box">
+                                <div class="item-left">
+                                    <img src="../public/img/demo3.jpg"/>
+                                </div>
+                                <div class="item-content box1">
+                                    <div class="item-title"><h3 class="ellipses">探鱼打折券</h3></div>
+                                    <div class="item-info"><span class="cash floatR">$100</span><span
+                                            class="item-info-span">原价999现价100</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a actionname="toDetail" data-id="2" class="item box">
+                                <div class="item-left">
+                                    <img src="../public/img/demo2.jpg"/>
+                                </div>
+                                <div class="item-content box1">
+                                    <div class="item-title"><h3 class="ellipses">小肥羊代金券</h3></div>
+                                    <div class="item-info"><span class="cash floatR">$50</span><span
+                                            class="item-info-span">原价99现价50</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a actionname="toDetail" data-id="3" class="item box">
+                                <div class="item-left">
+                                    <img src="../public/img/demo1.jpg"/>
+                                </div>
+                                <div class="item-content box1">
+                                    <div class="item-title"><h3 class="ellipses">外婆家代金券</h3></div>
+                                    <div class="item-info"><span class="cash floatR">$50</span><span
+                                            class="item-info-span">原价999现价50</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a actionname="toDetail" data-id="1" class="item box">
+                                <div class="item-left">
+                                    <img src="../public/img/demo3.jpg"/>
+                                </div>
+                                <div class="item-content box1">
+                                    <div class="item-title"><h3 class="ellipses">探鱼打折券</h3></div>
+                                    <div class="item-info"><span class="cash floatR">$100</span><span
+                                            class="item-info-span">原价999现价100</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a actionname="toDetail" data-id="2" class="item box">
+                                <div class="item-left">
+                                    <img src="../public/img/demo2.jpg"/>
+                                </div>
+                                <div class="item-content box1">
+                                    <div class="item-title"><h3 class="ellipses">小肥羊代金券</h3></div>
+                                    <div class="item-info"><span class="cash floatR">$50</span><span
+                                            class="item-info-span">原价99现价50</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a actionname="toDetail" data-id="3" class="item box">
+                                <div class="item-left">
+                                    <img src="../public/img/demo1.jpg"/>
+                                </div>
+                                <div class="item-content box1">
+                                    <div class="item-title"><h3 class="ellipses">外婆家代金券</h3></div>
+                                    <div class="item-info"><span class="cash floatR">$50</span><span
+                                            class="item-info-span">原价999现价50</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="view-more"><a onclick="javascript:void(0)">加载更多</a></div>
+                </div>
+            </div>
+        </div>
+        <!--优惠券列表页面 开始-->
+
+
+        <!--优惠券详情页面 开始-->
+        <div class="panel" title="详情" js-scrolling="true" id="page_ticket_detail" data-tab="ticket"
+             data-footer="defaultFoot"
+             data-appbuilder-object="page" data-header="wechat" style="overflow: hidden">
+            <div class="detail">
+                <h2 class="detail-title">探鱼100元代金券</h2>
+
+                <div class="box detail-info">
+                    <div class="item-pic">
+                        <img src="../public/img/demo3.jpg">
+                    </div>
+                    <div class="box1 item-info2">
+                        <div class="cash">$50元<span class="discount">4.5折</span></div>
+                        <div class="info-small">已售300张</div>
+                        <div><a class="btn-buy" actionname="toBuy" data-id="1"><span class="floatR">购买</span></a></div>
+                    </div>
+                </div>
+                <div class="hr"></div>
+                <div class="box shop-info">
+                    <div class="box1">
+                        <a>预定餐位</a>
+                    </div>
+                    <div class="box1">
+                        <a>优惠券</a>
+                    </div>
+                </div>
+                <div class="hr"></div>
+                <div class=" shop-info">
+                    <div style="border-bottom:1px #e9e9e9 solid; padding: 0 0 5px 0">
+                        详细信息
+                    </div>
+                    <p style="font-size: 14px;word-wrap: break-word;color: #323232;padding: 5px 0 5px 0">这里是关于优惠券的详细信息！
+                    </p>
+                </div>
+                <div class="hr"></div>
+                <div class=" shop-info">
+                    <div style="border-bottom:1px #e9e9e9 solid; padding: 0 0 5px 0">
+                        商家信息
+                    </div>
+
+                    <p style="font-size: 14px;word-wrap: break-word;color: #323232;padding: 5px 0 5px 0">
+                        电话：0472555555555<br/>
+                        地址：东河区工业路口北100米
+                    </p>
+                </div>
+                <div class="hr"></div>
+                <div class=" shop-info">
+                    <a class="btn-buy" actionname="toBuy" data-id="1"><span>立即抢购</span></a>
+                </div>
+                <div class="hr"></div>
+
+            </div>
+        </div>
+        <!--优惠券详情页面 结束-->
+
+        <footer id="defaultFoot">
+            <a id="book" class="icon icon-file" actionname="toBook">预定</a>
+            <a href="#page_ticket_list" id="ticket" class="icon icon-users" actionname="toTicket">优惠券</a>
+            <a id="userCenter" class="icon icon-tags" actionname="toUserInfo">个人信息</a>
+        </footer>
+
+        <header id="wechat">
+            <a class="btn-left btn-back" onclick="$.ui.goBack()">返回</a>
+            <a class="btn-right">我的信息</a>
+        </header>
+
+    </div>
+</div>
+<script type="text/javascript">
+    $.ui.blockPageScroll();
+    $.ui.isAjaxApp = false;
+    $.os.supportsTouch = true;
+    $.ui.useOSThemes = false;
+    $.feat.nativeTouchScroll = false;
+    $.ui.autoLaunch = true;
+</script>
+<script type="application/javascript" src="../public/js/sea.js"></script>
+<script type="application/javascript">
+    seajs.config({
+        charset: 'utf-8',
+        timeout: 20000,
+        debug: false
+    });
+    seajs.use('../ticket/ticket.js');
+</script>
+</body>
+</html>

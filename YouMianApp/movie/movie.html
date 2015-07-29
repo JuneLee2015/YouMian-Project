@@ -1,0 +1,219 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>电影票</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta content="black" name=”apple-mobile-web-app-status-bar-style” />
+    <meta name="format-detection" content="telephone=no">
+    <link href="../public/css/base.css" rel="stylesheet" type="text/css">
+    <link href="../public/css/pages.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="../public/js/appframework.js"></script>
+    <script type="text/javascript" src="../public/js/appframework.ui.js"></script>
+    <script type="text/javascript" src="../public/js/iscroll.js"></script>
+    <script type="text/javascript" src="../public/js/template.js"></script>
+</head>
+<body>
+    <div id="afui" class='af'>
+        <div id="splashscreen" class='ui-loader'>
+            <div class="spinnerInit">
+                <p id="spinnerInit"></p>
+            </div>
+        </div>
+        <div id="header"></div>
+        <div id="navbar">
+        </div>
+        <div id="content" style="">
+            <div class="panel" title="电影票列表" data-tab="ticket" js-scrolling="false" id="page_ticket_list"
+                 data-appbuilder-object="page" data-header="wechat" style="display: block;overflow: hidden"
+                 data-footer="defaultFoot">
+                <div id="wrapper_0" class="wrapper js-i-scroll">
+                    <div id="scroller_0" class="scroller">
+                        <div id="mask"></div>
+                        <ul class="search-list" id="divListContent">
+                            <!--<li class="item2 box">
+            <div class="item-left">
+                <img src="../public/img/pacific.jpg" />
+            </div>
+            <div class="item-content box1">
+                <div class="item-title">
+                    <h3 class="ellipses">天亿影城青山店</h3>
+                    <p class="item-info-span">
+                        原价<span class="color-theme">50</span>现价<span class="color-theme">20</span></span>
+                    </p>
+                </div>
+                <div class="box pad-t5">
+                    <a class="box1 pad-r15percent btn-buy"><span class="h30">购买</span></a>
+                    <a class="box1 pad-r15percent btn-buy"><span class="h30">影讯</span></a>
+                </div>
+            </div>
+        </li>-->
+                        </ul>
+                        <div class="view-more"><a actionname="nextPage" onclick="javascript:void(0)">加载更多</a></div>
+                    </div>
+                </div>
+            </div>
+            <!--电影票列表页面 结束-->
+
+            <!--电影票详情页面 开始-->
+            <div class="panel" title="详情" js-scrolling="true" id="page_ticket_detail" data-tab="ticket"
+                 data-footer="defaultFoot"
+                 data-appbuilder-object="page" data-header="wechat" style="overflow: hidden">
+                <div class="detail">
+                    <h2 class="detail-title">探鱼100元代金券</h2>
+                    <div class="box detail-info">
+                        <div class="item-pic">
+                            <img src="../public/img/pacific.jpg">
+                        </div>
+                        <div class="box1 item-info2">
+                            <div class="cash">$50元<span class="discount">4.5折</span></div>
+                            <div class="info-small">已售300张</div>
+                            <div><a class="btn-buy" actionname="toBuy" data-id="1"><span class="floatR">购买</span></a></div>
+                        </div>
+                    </div>
+                    <div class="hr"></div>
+                    <div class="box shop-info">
+                        <div class="box1">
+                            <a>预定餐位</a>
+                        </div>
+                        <div class="box1">
+                            <a>优惠券</a>
+                        </div>
+                    </div>
+                    <div class="hr"></div>
+                    <div class=" shop-info">
+                        <div style="border-bottom:1px #e9e9e9 solid; padding: 0 0 5px 0">
+                            详细信息
+                        </div>
+                        <p style="font-size: 14px;word-wrap: break-word;color: #323232;padding: 5px 0 5px 0">
+                            这里是关于优惠券的详细信息！
+                        </p>
+                    </div>
+                    <div class="hr"></div>
+                    <div class=" shop-info">
+                        <div style="border-bottom:1px #e9e9e9 solid; padding: 0 0 5px 0">
+                            商家信息
+                        </div>
+                        <p style="font-size: 14px;word-wrap: break-word;color: #323232;padding: 5px 0 5px 0">
+                            电话：0472555555555<br />
+                            地址：东河区工业路口北100米
+                        </p>
+                    </div>
+                    <div class="hr"></div>
+                    <div class=" shop-info">
+                        <a class="btn-buy" actionname="toBuy" data-id="1"><span>立即抢购</span></a>
+                    </div>
+                    <div class="hr"></div>
+                </div>
+                <!--优惠券详情页面 结束-->
+            </div>
+            
+            <!--电影票购买-->
+            <div class="panel" js-scrolling="true" id="page_ticket_buy" data-tab="ticket"
+                 data-footer="defaultFoot" data-appbuilder-object="page" data-header="wechat">
+                <div class="detail">
+                    <h2 class="detail-title">购买优惠券</h2>
+                    <ul class="buyinfo-list">
+                        <li class="hr"></li>
+                        <div class="box pad10 border-bottom1">
+                            <div class="box1 h35" id="divTeamBuyTitle">
+                                <!--小肥羊50元优惠券-->
+                            </div>
+                            <div class="box1">
+                                <div class="box">
+                                    <a class="btn-num" actionname="minusNum" target-id="ticketNum">-</a>
+                                    <div class=" pad-h10">
+                                        <input id="ticketNum" class="ipt-info"
+                                               placeholder="数量" type="text"
+                                               style="width:50px;text-align: center; padding:0 10px;"
+                                               value="1" />
+                                    </div>
+                                    <a class="btn-num selected" actionname="addNum" target-id="ticketNum">+</a>
+                                </div>
+                            </div>
+                        </div>
+                        <li class="shop-info">
+                            <ul class="shop-info-list">
+                                <li class="border-bottom1"><span>单价：</span><span id="divDanJia" class="color-theme"></span>元</li>
+                                <li><span>合计：</span><span id="divTotalPrice" class="color-theme"></span>元</li>
+                            </ul>
+                        </li>
+                        <li class="hr"></li>
+                        <li>
+                            <input id="txtCellPhone" class="ipt-info" placeholder="手机号码" maxlength="11" type="text" />
+                        </li>
+                        <li class="box tab-menu">
+                            <div class="box1 box1-2">
+                                <input id="txtAliasName" class="ipt-info" placeholder="称呼" maxlength="10" type="text" />
+                            </div>
+                            <div class="box1 box1-2">
+                                <div class="box tab-menu" id="txtSex">
+                                    <a class="box1 box1-2 tab-menu-radio radio-selected" actionname="selectGender"
+                                       type="male">男</a>
+                                    <a class="box1 box1-2 tab-menu-radio" actionname="selectGender" type="female">女</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="hr"></li>
+                    </ul>
+                    <div class="shop-info">
+                        <a id="btnBuyTicketId" class="btn-buy" actionname="toSubmit" data-id=""><span class="h40">确认支付</span></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel" js-scrolling="true" id="page_bind" data-tab="book"
+                 data-footer="defaultFoot" data-appbuilder-object="page" data-header="wechat">
+                <div class="detail">
+                    <h2 class="detail-title">绑定手机号</h2>
+                    <div class="box pad-h10">
+                        <div style="width:200px;margin-right:10px;">
+                            <input id="txtYourCellPhone" class="ipt-info" placeholder="您的手机号码" maxlength="11" type="text" />
+                        </div>
+                        <a class="box1 " actionname="getBindCode">
+                            <span class="btn-theme">获取验证码</span>
+                        </a>
+                    </div>
+                    <div class="shop-info">
+                        <input id="txtValidateCode" class="ipt-info" placeholder="验证码" maxlength="8" style="width:100px;" type="text" />
+                    </div>
+                    <div class="shop-info">
+                        <a class="btn-buy" actionname="toSubmit" data-id="1"><span class="h40">确认绑定</span></a>
+                    </div>
+                </div>
+            </div>
+
+            <footer id="defaultFoot">
+                <a onclick="window.location.href='../reserve/reserve.html'" id="book" class="icon icon-file" actionname="toBook">预定餐位</a>
+                <a onclick="window.location.href='../ticket/TeamList.html'" id="ticket" class="icon icon-users" actionname="toTicket">优惠券</a>
+                <a onclick="window.location.href='../user/user.html'" id="userCenter" class="icon icon-tags" actionname="toUserInfo">个人信息</a>
+            </footer>
+            <header id="wechat">
+                <a class="btn-left btn-back" onclick="$.ui.goBack()">返回</a>
+                <a class="btn-right">我的信息</a>
+            </header>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $.ui.blockPageScroll();
+        $.ui.isAjaxApp = false;
+        $.os.supportsTouch = true;
+        $.ui.useOSThemes = false;
+        $.feat.nativeTouchScroll = false;
+        $.ui.autoLaunch = true;
+    </script>
+    <script type="application/javascript" src="../public/js/sea.js"></script>
+    <script type="application/javascript">
+        seajs.config({
+            charset: 'utf-8',
+            timeout: 20000,
+            debug: false
+        });
+        seajs.use('../movie/moive.js');
+    </script>
+</body>
+</html>

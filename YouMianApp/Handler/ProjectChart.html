@@ -1,0 +1,238 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>评分回顾</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <meta content="telephone=no,email=no" name="format-detection" />
+
+    <script src="../js/jquery-1.11.2.min.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+</head>
+<body style="background: #fff;">
+
+    <input id="btn1" type="button" value="click me to show some data" />
+    <div id='ss' style=' position:absolute;z-index: 10000; top:0px; left:0px;background: blueviolet;width:500px;height:35px;'></div>
+    <iframe style="position:absolute; top:0px; left:0px;" width=300 height=60 src='hotel_search.php?rest_id="+sidAry[i]+"' frameborder=0 scrolling=no></iframe>";
+    <h2>area list</h2>
+    <div id="divArea"></div>
+
+    <h2>dish list</h2>
+    <div id="divDishes"></div>
+
+    <h2>team voucher list</h2>
+    <div id="divTeam"></div>
+
+    <h2>team details </h2>
+    <div id="divTeamDetails"></div>
+
+    <h2>team movies </h2>
+    <div id="divMovies"></div>
+
+    <h2>resterants list </h2>
+    <div id="divResterants"></div>
+
+    <h2>Restaurant Details</h2>
+    <div id="divRestDetails"></div>
+    <div id="divRestDetailsOfTeams"></div>
+    
+    <h2>restaurant order info</h2>
+    <div id="divRestaurantOrderInfo"></div>
+    <script type="text/javascript">
+
+        //$.ajax({
+        //    type: "POST",
+        //    url: "MyHandler.ashx?opertype=getarea",
+        //    contentType: "application/json",
+        //    //data: "{a: 1, b: 2}",
+        //    dataType: 'json',
+        //    success: function(result) {
+        //        var str = "";
+        //        for (var i = 0; i < result.length; i++) {
+        //            str += result[i].areaname + " , ";
+        //        }
+        //        $("#divArea").html(str);
+        //    },
+        //    error: function(result) {
+        //        alert(result);
+        //    }
+        //});
+
+        function co(name) {
+            return encodeURIComponent(name);
+        }
+
+        function DoMethod(methodName, successHandler) {
+            $.ajax({
+                type: "POST",
+                url: "MyHandler.ashx?opertype=" + methodName,
+                contentType: "application/json",
+                //data: "{a: 1, b: 2}",
+                dataType: 'json',
+                success: function (result) {
+                    successHandler(result);
+                },
+                error: function (result) {
+                    alert(result);
+                }
+            });
+        }
+
+        function RestaurantOrder() {
+            var dinning_time = "2015-02-05";
+            var sjd = "18:00";
+            var bz = "雅间优先";
+            var rest_id = 990;
+            var persons = 4;
+            var username = "杨过";
+            var tell = "18500234180";
+            var team_id = "120";
+
+            //$.support.cors = true;
+            $.ajax({
+                url: "http://www.youmianwang.com/api/yd_orders.php?dining_time=" + dinning_time + "&sjd=" + co(sjd) + "&bz=" + co(bz)
+            + "&rest_id=" + rest_id + "&persons=" + persons + "&username=" + co(username) + "&tell=" + tell,
+                //data: { Full: "fu" },
+                //type: "get",
+                dataType: 'jsonp',
+                jsonp: "jsonpcallback",
+                jsonpCallback:"success_jsonpcallback",
+                success: function(result) {
+                    //		msg	"OK|1201501292245548"	String
+
+                    var msg = result[0].msg.toString();
+                    var status = msg.substr(0, 2);
+                    var orderNum = msg.substring(3);
+                    if (status == "OK") {
+                        alert("开始写入订单");
+                        //调用写入订单接口 将订单写入本地 orders表
+
+                        var params = "restaurantorder&dining_time=" + dinning_time + "&sjd=" + sjd + "&bz=" + bz
+                            + "&username=" + co(username)+"&tell="+tell+"&rest_Id="+rest_id
+                            +"&persons="+persons+"&team_id="+team_id+"&order_num="+orderNum;
+                        DoMethod(params, function(result) {
+
+                            alert("写入订单表orders表成功!");
+                            alert(result.status+" : "+result.val);
+                        });
+                    }
+                },
+                error: function (er) {
+                    alert(er);
+                }
+            });
+
+        }
+
+        function getareaSuccessHandler(result) {
+            var str = "";
+            for (var i = 0; i < result.length; i++) {
+                str += result[i].areaname + " , ";
+            }
+            $("#divArea").html(str);
+        }
+
+        function getdishesSuccessHandler(result) {
+            var str = "";
+            for (var i = 0; i < result.length; i++) {
+                str += result[i].name + " , ";
+            }
+            $("#divDishes").html(str);
+        }
+
+        function getteamSuccessHandler(result) {
+            var str = "";
+            for (var i = 0; i < result.length; i++) {
+                str += result[i].title + " , ";
+            }
+            $("#divTeam").html(str);
+        }
+
+        function getmoviesSuccessHandler(result) {
+            var str = "";
+            for (var i = 0; i < result.length; i++) {
+                str += result[i].title + " , ";
+            }
+            $("#divMovies").html(str);
+        }
+
+        function getteamdetailsSuccessHandler(result) {
+            var str = result.begin_time + " , " + result.end_time + " , " + result.title;
+            str += " phone :" + result.phone + " , " + result.address1;
+            $("#divTeamDetails").html(str);
+        }
+
+        function getresterantsSuccessHandler(result) {
+            var str = "";
+            for (var i = 0; i < result.length; i++) {
+                str += result[i].title + " , " + result[i].address;
+            }
+            $("#divResterants").html(str);
+        }
+
+        function getrestaurantdetailsSuccessHandler(result) {
+            var str = result.title + " , " + result.address + " , " + result.phone;
+            str += " " + result.dcsj + " , " + result.special;
+            $("#divRestDetails").html(str);
+        }
+
+        function getrestaurantdetailsOfTeamSuccessHandler(result) {
+            var str = "";
+            for (var i = 0; i < result.length; i++) {
+                str += result[i].title + " , " + result[i].team_id;
+            }
+            $("#divRestDetailsOfTeams").html(str);
+        }
+
+
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#btn1").click(function () {
+                //DoMethod("getarea", getareaSuccessHandler);
+                //DoMethod("getdishes", getdishesSuccessHandler);
+                //DoMethod("getteam&pageIndex=1&pageSize=5", getteamSuccessHandler);
+                //DoMethod("getteamdetails&teamid=37", getteamdetailsSuccessHandler);
+                //DoMethod("getmovies&pageIndex=1&pageSize=5", getmoviesSuccessHandler);
+                //DoMethod("getresterants&pageIndex=1&pageSize=10&restName=&areaId=&caiId=", getresterantsSuccessHandler);
+                //DoMethod("getrestaurantDetails&restId=990", getrestaurantdetailsSuccessHandler);
+                //DoMethod("getrestaurantdetailsOfTeams&partnerId=4", getrestaurantdetailsOfTeamSuccessHandler);
+                //RestaurantOrder();
+
+                //DoMethod("insertweixinuser&tousername=weixinid_33110&username=yangmao&sex=男&mobile=18500234180",function(result) {
+                //    alert(result.status);
+                //});
+
+                //DoMethod("getuserinfobyweixinid&tousername=weixin_001", function(result) {
+
+                //    var weixin_user = result.wx_user;
+                //    var id = weixin_user.id;
+                //    var mobile = weixin_user.mobile;
+                //    var datetime = weixin_user.datetime;
+                //    var sex = weixin_user.sex;
+                //    var username = weixin_user.username;
+                //    var user_id = weixin_user.user_id;
+                //    var tousername = weixin_user.tousername;
+
+                //});
+                $.cookie("username", "yangmao");
+
+                alert($.cookie("username"));
+
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        /*下拉菜单*/
+        $(function () {
+
+            var smsUrl = "http://114.113.155.149:8888/sms.aspx?action=send&userid=110&account=zijics106&password=126zcn&mobile={$phone}&content={$content}";
+
+        });
+
+    </script>
+
+</body>
+</html>

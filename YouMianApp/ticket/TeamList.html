@@ -1,0 +1,277 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>优惠券</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta name="format-detection" content="telephone=no">
+    <link href="../public/css/base.css" rel="stylesheet" type="text/css">
+    <link href="../public/css/pages.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="../public/js/appframework.js"></script>
+    <script type="text/javascript" src="../public/js/appframework.ui.js"></script>
+    <script type="text/javascript" src="../public/js/iscroll.js"></script>
+    <script type="text/javascript" src="../public/js/template.js"></script>
+</head>
+<body>
+    <div id="afui" class='af'>
+        <div id="splashscreen" class='ui-loader'>
+            <div class="spinnerInit">
+                <p id="spinnerInit"></p>
+            </div>
+        </div>
+        <div id="header"></div>
+        <div id="navbar">
+        </div>
+        <div id="content" style="">
+            
+            <!--优惠券列表页面 开始-->
+            <div class="panel" title="优惠券列表" data-tab="ticket" js-scrolling="false" id="page_ticket_list"
+                 data-appbuilder-object="page" data-header="wechat" style="display: block;overflow: hidden"
+                 data-footer="defaultFoot">
+                <section class="search-deal">
+                    <!--<span class="floatL">餐位预定中心</span>
+                    <a id="btnSearch" class="floatR btn-search" style="cursor: pointer;" actionname="goSearch" >搜 索</a>
+                    <div class="search-deal-input"><input id="txtTeamName" placeholder="搜索优惠券" /></div>-->
+                    <div class="search-input">
+                        <div class="search-input-box">
+                            <input class="search-input-input" id="txtTeamName" placeholder="搜索优惠券" />                            
+                            <a id="btnSearch" class="floatR btn-search" actionname="goSearch" ><span class="search-icon"></span></a>
+                        </div>
+                    </div>
+                </section>
+                <div class="list-nav ">
+                    <div class="cat fix">
+                        <a actionname="showMenu" id="areaVal" show="AreaList" class="nav-item box1-3">
+                            <span>全部区域</span>
+                            <i class="drop"></i>
+                        </a>
+                        <a actionname="showMenu" id="cuisineVal" show="CuisineList" class="nav-item box1-3">
+                            <span>全部菜系</span>
+                            <i class="drop"></i>
+                        </a>
+                        <a actionname="showMenu" id="orderVal" show="orderList" class="nav-item box1-3">
+                            <span>默认排序</span>
+                            <i class="drop"></i>
+                        </a>
+                    </div>
+                    <div class="top-selector js-i-scroll" iscroll-bounce="false" id="AreaList">
+                        <ul class="menu" id="divAreas">
+                            <!--<li class="menu-item on"><a actionname="selectArea">全部区域</a></li>
+                                <li class="menu-item"><a actionname="selectArea">盐田区</a></li>-->
+                        </ul>
+                    </div>
+                    <div class="top-selector js-i-scroll" iscroll-bounce="false" id="CuisineList">
+                        <ul class="menu" id="divCaixi">
+                            <!--<li class="menu-item on"><a actionname="selectCuisine">全部川菜</a></li>
+                                <li class="menu-item"><a actionname="selectCuisine">日本料理</a></li>-->
+                        </ul>
+                    </div>
+                    <div class="top-selector js-i-scroll" iscroll-bounce="false" id="orderList">
+                        <ul class="menu">
+                            <li class="menu-item on"><a actionname="selectOrder">销量</a></li>
+                            <li class="menu-item"><a actionname="selectOrder">折扣</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="wrapper_0" style="top:80px" class="wrapper js-i-scroll">
+                    <div id="scroller_0" class="scroller">
+                        <div id="mask"></div>
+                        <ul class="search-list" id="divListContent">
+                            <!--<li class="">
+                                    <a actionname="toDetail" data-id="1" class="item box">
+                                        <div class="item-left">
+                                            <img src="../public/img/demo3.jpg" />
+                                        </div>
+                                        <div class="item-content box1">
+                                            <div class="item-title"><h3 class="ellipses">探鱼打折券</h3></div>
+                                            <div class="item-info">
+                                                <span class="cash floatR">$100</span><span class="item-info-span">原价999现价100</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>                            
+                                <li class="">
+                                    <a actionname="toDetail" data-id="3" class="item box">
+                                        <div class="item-left">
+                                            <img src="../public/img/demo1.jpg" />
+                                        </div>
+                                        <div class="item-content box1">
+                                            <div class="item-title"><h3 class="ellipses">外婆家代金券</h3></div>
+                                            <div class="item-info">
+                                                <span class="cash floatR">$50</span><span class="item-info-span">原价999现价50</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>-->
+                        </ul>
+                        <div class="view-more" style="cursor: pointer;color:#ed5d1e;"><a id="btnNextPage" actionname="nextPage" style="cursor: pointer;">点击加载更多...</a></div>
+                    </div>
+                </div>
+            </div>
+            <!--优惠券列表页面 结束-->
+            
+            <!--优惠券详情页面 开始-->
+            <div class="panel" title="详情" js-scrolling="true" id="page_ticket_detail" data-tab="ticket"
+                 data-footer="defaultFoot"
+                 data-appbuilder-object="page" data-header="wechat">
+                <div class="detail">
+                    <h2 id="divTitle" class="detail-title"></h2>
+                    <div class="box detail-info">
+                        <div class="item-pic">
+                            <img alt="" id="imgSrc" src="">
+                        </div>
+                        <div class="box1 item-info2">
+                            <div id="divTeamPrice" class="cash"><span class="discount"></span></div>
+                            <div id="divTotalSaled" class="info-small"></div>
+                            <div><a class="btn-buy" actionname="toBuyTicket" data-id="" data-title=""><span class="floatR">抢购</span></a></div>
+                        </div>
+                    </div>
+                    <div class="hr"></div>
+                    <div class="box shop-info">
+                        <div class="box1" id="divCanWeiShow">
+                            <a>预定餐位</a>
+                        </div>
+                        <div class="box1" id="divYouHuiQuanShow">
+                            <a>优惠券</a>
+                        </div>
+                    </div>
+                    <div class="hr"></div>
+                    <div class=" shop-info">
+                        <div id="divDetailInfo1" class="shop-info-title">
+                            <!--详细信息-->
+                        </div>
+                        <p id="divDetailInfo2" class="shop-info-list">
+                            <!--这里是关于优惠券的详细信息！-->
+                        </p>
+                    </div>
+                    <div class="hr"></div>
+                    <div class=" shop-info">
+                        <div id="divBusinessInfo1" class="shop-info-title">
+                            <!--商家信息-->
+                        </div>
+                        <ul class="shop-info-list" id="divBusinessInfo2">
+                            <!--电话：0472555555555<br />
+                                地址：东河区工业路口北100米-->
+                        </ul>
+                    </div>
+                    <div class="hr"></div>
+                    <div class=" shop-info">
+                        <a class="btn-buy" actionname="toBuyTicket" data-id="1"><span class="h40">抢购</span></a>
+                    </div>
+                </div>
+            </div>
+            <!--优惠券详情页面 结束-->
+            
+            <!--优惠券购买-->
+            <div class="panel" js-scrolling="true" id="page_ticket_buy" data-tab="ticket"
+                 data-footer="defaultFoot" data-appbuilder-object="page" data-header="wechat">
+                <div class="detail">
+                    <h2 class="detail-title">购买优惠券</h2>
+                    <ul class="buyinfo-list">
+                        <li class="hr"></li>
+                        <li>
+                            <div class="box pad10 border-bottom1">
+                                <div class="box1 h35" id="divTeamBuyTitle" style="width:auto; height:auto;">
+                                    <!--小肥羊50元优惠券-->
+                                </div>
+                                    <div class="box">
+                                        <a class="btn-num" actionname="minusNum" target-id="ticketNum">-</a>
+                                        <div class=" pad-h10">
+                                            <input id="ticketNum" class="ipt-info"
+                                                   placeholder="数量" type="text"
+                                                   style="width:50px;text-align: center; padding:0 10px;"
+                                                   value="1" readonly="readonly" />
+                                        </div>
+                                        <a class="btn-num selected" actionname="addNum" target-id="ticketNum">+</a>
+                                    </div>
+                            </div>
+                        </li>
+                        <li class="hr"></li>
+                        <li class="shop-info">
+                            <ul class="shop-info-list">
+                                <li class="border-bottom1"><span>单价：</span><span id="divDanJia" class="color-theme"></span>元</li>
+                                <li><span>合计：</span><span id="divTotalPrice" class="color-theme"></span>元</li>
+                            </ul>
+                        </li>
+                        <li class="hr"></li>
+                        <li>
+                            <input id="txtCellPhone" class="ipt-info" placeholder="手机号码" maxlength="11" type="text" />
+                        </li>
+                        <li class="box tab-menu">
+                            <div class="box1 box1-2">
+                                <input id="txtAliasName" class="ipt-info" placeholder="称呼" maxlength="10" type="text" />
+                            </div>
+                            <div class="box1 box1-2">
+                                <div class="box tab-menu" id="txtSex">
+                                    <a class="box1 box1-2 tab-menu-radio radio-selected" actionname="selectGender"
+                                       type="male">男</a>
+                                    <a class="box1 box1-2 tab-menu-radio" actionname="selectGender" type="female">女</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="hr"></li>
+                    </ul>
+                    <div class="shop-info">
+                        <a id="btnBuyTicketId" class="btn-buy" actionname="toPay" data-id=""><span class="h40">确认支付</span></a>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="panel" js-scrolling="true" id="page_bind" data-tab="book"
+                 data-footer="defaultFoot" data-appbuilder-object="page" data-header="wechat">
+                <div class="detail">
+                    <h2 class="detail-title">绑定手机号</h2>
+                    <div class="box pad-h10">
+                        <div style="width:200px;margin-right:10px;">
+                            <input id="txtYourCellPhone" class="ipt-info" placeholder="您的手机号码" maxlength="11" type="text" />
+                        </div>
+                        <a class="box1 " actionname="getBindCode">
+                            <span class="btn-theme">获取验证码</span>
+                        </a>
+                    </div>
+                    <div class="shop-info">
+                        <input id="txtValidateCode" class="ipt-info" placeholder="验证码" maxlength="8" style="width:100px;" type="text" />
+                    </div>
+                    <div class="shop-info">
+                        <a class="btn-buy" actionname="toSubmit" data-id="1"><span class="h40">确认绑定</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer id="defaultFoot">
+            <a onclick="window.location.href='../reserve/reserve.html'" id="book" class="icon icon-file" actionname="toBook">预定餐位</a>
+            <a href="#page_ticket_list" id="ticket" class="icon icon-users" actionname="toTicket">优惠券</a>
+            <a onclick="window.location.href='../user/user.html'" id="userCenter" class="icon icon-tags" actionname="toUserInfo">个人信息</a>
+        </footer>
+        <header id="wechat">
+            <a class="btn-left btn-back" onclick="$.ui.goBack()">返回</a>
+            <a class="btn-right">我的信息</a>
+        </header>
+
+    </div>
+    <script type="text/javascript">
+        $.ui.blockPageScroll();
+        $.ui.isAjaxApp = false;
+        $.os.supportsTouch = true;
+        $.ui.useOSThemes = false;
+        $.feat.nativeTouchScroll = false;
+        $.ui.autoLaunch = true;
+    </script>
+    <script type="application/javascript" src="../public/js/sea.js"></script>
+    <script type="application/javascript">
+        seajs.config({
+            charset: 'utf-8',
+            timeout: 20000,
+            debug: false
+        });
+        seajs.use('../ticket/ticket.js');
+        
+    </script>
+</body>
+</html>

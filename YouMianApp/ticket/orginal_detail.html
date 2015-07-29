@@ -1,0 +1,174 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>优惠券详情</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta name="format-detection" content="telephone=no">
+    <link href="../public/css/base.css" rel="stylesheet" type="text/css">
+    <link href="../public/css/pages.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="../public/js/appframework.js"></script>
+    <script type="text/javascript" src="../public/js/appframework.ui.js"></script>
+    <script type="text/javascript" src="../public/js/iscroll.js"></script>
+    <script type="text/javascript" src="../public/js/template.js"></script>
+</head>
+<body>
+    <div id="afui" class='af'>
+        <div id="splashscreen" class='ui-loader'>
+            <div class="spinnerInit">
+                <p id="spinnerInit"></p>
+            </div>
+        </div>
+        <div id="header"></div>
+        <div id="navbar">
+        </div>
+        <div id="content" style="">
+
+            <!--优惠券详情页面 开始-->
+            <div class="panel" title="详情" js-scrolling="true" id="page_ticket_detail" data-tab="ticket"
+                 data-footer="defaultFoot" 
+                 data-appbuilder-object="page" data-header="wechat">
+                <div class="detail">
+                    <h2 id="divTitle" class="detail-title"></h2>
+                    <div class="box detail-info">
+                        <div class="item-pic">
+                            <img alt="" id="imgSrc" src="">
+                        </div>
+                        <div class="box1 item-info2">
+                            <div id="divTeamPrice" class="cash"><span class="discount"></span></div>
+                            <div id="divTotalSaled" class="info-small"></div>
+                            <div><a class="btn-buy" actionname="toBuyTicket" data-id="1"><span class="floatR">抢购</span></a></div>
+                        </div>
+                    </div>
+                    <div class="hr"></div>
+                    <div class="box shop-info">
+                        <div class="box1">
+                            <a class="box1">预定餐位</a>
+                        </div>
+                        <div class="box1">
+                            <a class="box1">优惠券</a>
+                        </div>
+                    </div>
+                    <div class="hr"></div>
+                    <div class=" shop-info">
+                        <div id="divDetailInfo1" class="shop-info-title">
+                            <!--详细信息-->
+                        </div>
+                        <p id="divDetailInfo2" class="shop-info-list">
+                            <!--这里是关于优惠券的详细信息！-->
+                        </p>
+                    </div>
+                    <div class="hr"></div>
+                    <div class=" shop-info">
+                        <div id="divBusinessInfo1" class="shop-info-title">
+                            <!--商家信息-->
+                        </div>
+                        <ul class="shop-info-list"  id="divBusinessInfo2" >
+                            <!--电话：0472555555555<br />
+        地址：东河区工业路口北100米-->
+                        </ul>
+                    </div>
+                    <div class="hr"></div>
+                    <div class=" shop-info">
+                        <a class="btn-buy" actionname="toBuy" data-id="1"><span class="h40">抢购</span></a>
+                    </div>
+                </div>
+            </div>
+            <!--优惠券详情页面 结束-->
+        </div>
+
+        <footer id="defaultFoot">
+            <a onclick="window.location.href='../reserve/index.html'" id="book" class="icon icon-file" actionname="toBook">预定餐位</a>
+            <a href="#page_ticket_list" id="ticket" class="icon icon-users" actionname="toTicket">优惠券</a>
+            <a onclick="window.location.href='../user/index.html'" id="userCenter" class="icon icon-tags" actionname="toUserInfo">个人信息</a>
+        </footer>
+        <header id="wechat">
+            <a target="_self" id="btnReturn" class="btn-left btn-back">返回</a>
+            <a class="btn-right">我的信息</a>
+        </header>
+
+    </div>
+    <script type="text/javascript">
+        $.ui.blockPageScroll();
+        $.ui.isAjaxApp = false;
+        $.os.supportsTouch = true;
+        $.ui.useOSThemes = false;
+        $.feat.nativeTouchScroll = false;
+        $.ui.autoLaunch = true;
+    </script>
+    <script type="application/javascript" src="../public/js/sea.js"></script>
+    <script type="application/javascript">
+        seajs.config({
+            charset: 'utf-8',
+            timeout: 20000,
+            debug: false
+        });
+        seajs.use('../ticket/ticket.js');
+    </script>
+
+    <script type="text/javascript">
+        function getQueryStringByName(name) {
+            /// <summary>
+            ///     从URL中找到查询字符串
+            /// </summary>
+            /// <param name="name" type="String">
+            ///    查询字符串名称
+            /// </param>
+            /// <returns type="String" >查询字符串的值</returns>
+            var result = location.search.match(new RegExp("[\?\&]" + name + "=([^\&]+)", "i"));
+            if (result == null || result.length < 1) {
+                return "";
+            }
+            return result[1];
+        }
+
+        function DoMethod(methodName, successHandler) {
+            $.ajax({
+                type: "POST",
+                url: "../Handler/MyHandler.ashx?opertype=" + methodName,
+                contentType: "application/json",
+                //data: "{a: 1, b: 2}",
+                dataType: 'json',
+                success: function (result) {
+                    successHandler(result);
+                },
+                error: function (result) {
+                    alert(result);
+                }
+            });
+        }
+
+        function getteamdetailsSuccessHandler(result) {
+            $("#divTitle").html(result.title);
+            $("#imgSrc").attr("src", result.image);
+            $("#divTeamPrice").html("￥" + result.team_price + "元<span class='discount'>"
+                + ((result.team_price / result.market_price) * 10).toFixed(1) + "折</span>");
+            $("#divTotalSaled").html("已售" + result.pre_number + "张");
+            $("#divDetailInfo1").html(result.product);
+            $("#divDetailInfo2").html(result.summary);
+            $("#divBusinessInfo1").html(result.product);
+            $("#divBusinessInfo2").html("<li><span>电话：</span><span>" + result.phone
+                + "</span></li><li><span>地址：</span><span>" + result.PartnerAddress + "</span></li>");
+
+        }
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+
+            $("#btnReturn").click(function () {
+                location.href = "TeamList.html";
+            });
+
+            var team_id = getQueryStringByName("team_id");
+
+            DoMethod("getteamdetails&teamid=" + team_id, getteamdetailsSuccessHandler);
+        });
+    </script>
+</body>
+</html>
